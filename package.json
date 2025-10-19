@@ -1,0 +1,44 @@
+{
+  "name": "jp-backend",
+  "version": "1.0.0",
+  "description": "Job Portal Backend that allows user to search for jobs, apply, manage and much more.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThahiraSherin/jp-backend.git"
+  },
+  "keywords": [
+    "jobs",
+    "opening",
+    "interviews",
+    "mern",
+    "node.jd",
+    "expressjs",
+    "mongodb"
+  ],
+  "author": "Thahira Sherin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThahiraSherin/jp-backend/issues"
+  },
+  "homepage": "https://github.com/ThahiraSherin/jp-backend#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
