@@ -20,11 +20,10 @@ const sendTokenResponse = (user, statusCode, res) => {
         httpOnly: true, // prevent client-side access to the cookies
         secure: NODE_ENV === 'production', // use secure cookies in production
         sameSite: 'lax', // prevent CSRF attacks
-
-    }
+    };
 
     // remove the password from the user object
-    user.password = undefined;
+    if (user && user.password) user.password = undefined;
 
     res
         .status(statusCode)
@@ -39,4 +38,4 @@ const sendTokenResponse = (user, statusCode, res) => {
 module.exports = {
     generateToken,
     sendTokenResponse
-}
+};

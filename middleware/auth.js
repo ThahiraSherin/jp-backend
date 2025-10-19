@@ -38,7 +38,7 @@ const protect = async (req, res, next) => {
             });
         }
 
-        if (!req.user.isActive) {
+        if (req.user.isActive === false) {
             return res.status(401).json({
                 success: false,
                 message: 'User account is deactivated'
@@ -51,7 +51,7 @@ const protect = async (req, res, next) => {
         return res.status(401).json({
             success: false,
             message: 'Not authorized to access this route.'
-        })
+        });
     }
 }
 
@@ -71,5 +71,5 @@ const authorize = (...roles) => {
 
 module.exports = {
     protect,
-    authorize
-}
+    authorize,
+};

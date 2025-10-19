@@ -3,9 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET, JWT_EXPIRE } = require('../utils/config');
 
-// Helper: send JWT token
-const sendTokenResponse = (user, statusCode, res) => {
-  const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+module.exports = { register, login, getMe, logout };
     expiresIn: JWT_EXPIRE || '1d',
   });
 
@@ -118,3 +116,4 @@ const logout = async (req, res) => {
 };
 
 module.exports = { register, login, getMe, logout };
+>>>>>>> 9d9f612 (fixed)

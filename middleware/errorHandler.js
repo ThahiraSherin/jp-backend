@@ -1,4 +1,4 @@
-const { NODE_ENV } = require("../utils/config");
+const { NODE_ENV } = require('../utils/config');
 
 const errorHandler = (err, req, res, next) => {
     let error = { ...err };
