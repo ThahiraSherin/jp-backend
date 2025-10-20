@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET, JWT_EXPIRE } = require('../utils/config');
+const { JWT_SECRET, JWT_EXPIRE, NODE_ENV } = require('../utils/config');
 
 
 
@@ -10,6 +10,11 @@ const register = async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      // helpful debug logs for validation failures (only in non-production)
+      if (NODE_ENV !== 'production') {
+        console.debug('Register validation failed:', errors.array());
+        console.debug('Register request body:', req.body);
+      }
       return res.status(400).json({ success: false, errors: errors.array() });
     }
 
