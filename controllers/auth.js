@@ -3,31 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET, JWT_EXPIRE } = require('../utils/config');
 
-module.exports = { register, login, getMe, logout };
-    expiresIn: JWT_EXPIRE || '1d',
-  });
 
-  // set cookie
-  const cookieOptions = {
-    httpOnly: true,
-    expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
-    secure: false,
-    sameSite: 'lax',
-  };
-
-  res.cookie('token', token, cookieOptions);
-
-  res.status(statusCode).json({
-    success: true,
-    token,
-    user: {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    },
-  });
-};
 
 // REGISTER
 const register = async (req, res) => {
@@ -116,4 +92,4 @@ const logout = async (req, res) => {
 };
 
 module.exports = { register, login, getMe, logout };
->>>>>>> 9d9f612 (fixed)
+
