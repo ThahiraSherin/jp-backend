@@ -5,7 +5,7 @@ const { MONGODB_URI } = require('../utils/config');
 
 async function generateSlugs() {
   try {
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB for slug generation');
 
     const jobs = await Job.find({ $or: [{ slug: { $exists: false } }, { slug: null }] });
