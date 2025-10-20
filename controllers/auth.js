@@ -70,7 +70,14 @@ const login = async (req, res) => {
     sendTokenResponse(user, 200, res);
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ success: false, message: 'Server error' });
+    // in non-production or when DEBUG_ERRORS is set, include error message for debugging
+    const DEBUG_ERRORS = process.env.DEBUG_ERRORS === 'true' || NODE_ENV !== 'production';
+    const payload = { success: false, message: 'Server error' };
+    if (DEBUG_ERRORS) {
+      payload.error = error.message;
+      payload.stack = error.stack;
+    }
+    res.status(500).json(payload);
   }
 };
 
