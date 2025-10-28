@@ -5,7 +5,7 @@ const { JWT_SECRET, JWT_EXPIRE, NODE_ENV } = require('../utils/config');
 // generate a JWT token
 const generateToken = (id) => {
     return jwt.sign({ id }, JWT_SECRET, {
-        expiresIn: JWT_EXPIRE
+        expiresIn: JWT_EXPIRE || '7d',
     });
 };
 

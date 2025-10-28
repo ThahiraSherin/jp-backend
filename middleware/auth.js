@@ -7,15 +7,15 @@ const { JWT_SECRET } = require('../utils/config');
 const protect = async (req, res, next) => {
     let token;
 
-    // check for token in cookies
-    if (req.cookies.token) {
-        token = req.cookies.token;
-    }
-
-    // also accept Authorization header
-    if (!token && req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        token = req.headers.authorization.split(' ')[1];
-    }
+  // Get token from headers or cookie
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies && req.cookies.token) {
+    token = req.cookies.token;
+  }
 
     if (!token) {
         return res.status(401).json({
@@ -29,7 +29,7 @@ const protect = async (req, res, next) => {
         const decoded = jwt.verify(token, JWT_SECRET);
 
         // get the user from token
-        req.user = await User.findById(decoded.id);
+        req.user = await User.findById(decoded.id).select('-password');
 
         if (!req.user) {
             return res.status(401).json({
